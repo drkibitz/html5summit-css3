@@ -1,0 +1,256 @@
+body, section, div {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #999;
+}
+
+#frame {
+    width: 100%;
+    height: 100%;
+   
+    overflow: hidden;
+    
+    position: relative;
+
+}
+
+.desktop #frame {
+	
+	width: 1024px;
+	height: 768px;
+	
+	margin: 5% auto;
+	
+	border: 2px solid #777;
+}
+
+#container {
+    -webkit-perspective: 900;
+    -webkit-perspective-origin-x: 50%;
+    -webkit-perspective-origin-y: 50%;
+    
+    width: 100%;
+    height: 100%;
+ }
+
+
+
+#scene {
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.block {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 64px;
+    height: 64px;
+    
+    -webkit-transform-style: preserve-3d;
+    
+    -webkit-background-size: 100% 100%;
+}
+
+.floor_empty {
+    background-color: #555;
+    background-image: url(images/floor_empty_light.png);
+    -webkit-background-size: 50% 50%;
+}
+
+.floor_empty_light {
+    background-color: #555;
+    background-image: url(images/floor_empty_light.png);
+    -webkit-background-size: 50% 50%;
+}
+
+.floor_base {
+    background-color: #99b;
+    background-image: url(images/floor_base.png);
+}
+
+.floor_base.highlight_top {
+    background-color: #99b;
+    background-image: 
+    	url(images/highlight_top.png),
+    	url(images/floor_base.png);
+
+}
+
+.floor_base.highlight_left {
+    background-color: #99b;
+    background-image: 
+    	url(images/highlight_left.png),
+    	url(images/floor_base.png);
+
+}
+
+.floor_base.highlight_bottom {
+    background-color: #99b;
+    background-image: 
+    	url(images/highlight_bottom.png),
+    	url(images/floor_base.png);
+
+}
+
+.floor_base.highlight_right {
+    background-color: #99b;
+    background-image: 
+    	url(images/highlight_right.png),
+    	url(images/floor_base.png);
+
+}
+
+.floor_biosupport.highlight_top {
+    background-color: #575;
+    background-image: 
+    	url(images/highlight_top.png),
+    	url(images/floor_bio.png);
+
+}
+
+.floor_biosupport.highlight_left {
+    background-color: #575;
+    background-image: 
+    	url(images/highlight_left.png),
+    	url(images/floor_bio.png);
+
+}
+
+.floor_biosupport.highlight_bottom {
+    background-color: #575;
+    background-image: 
+    	url(images/highlight_bottom.png),
+    	url(images/floor_bio.png);
+
+}
+
+.floor_biosupport.highlight_right {
+    background-color: #575;
+    background-image: 
+    	url(images/highlight_right.png),
+    	url(images/floor_bio.png);
+
+}
+
+.floor_cybernode {
+    background-color: #87a;
+    background-image: url(images/floor_cyber.png);
+}
+
+.floor_biosupport {
+    background-color: #575;
+    background-image: url(images/floor_bio.png);
+}
+
+.floor_forcefield {
+    background-color: transparent;
+    background-image: -webkit-gradient(linear, 0 100%, 100% 0,
+                            color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent),
+                            color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)),
+                            color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent),
+                            to(transparent));
+                                
+    -webkit-background-size: 50%%;
+}
+
+.floor_forcefield.active {
+    background-color: #f90;
+}
+
+.blank_lighter {
+    background-color: #666;
+}
+
+.wall {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 64px;
+    height: 64px;
+    
+    background-color: #aac;    
+
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin: 0 0;
+    -webkit-background-size: 100% 100%;
+}
+
+.floor_base > .wall {
+    background-image: url(images/wall_base.png);
+}
+
+.floor_cybernode > .wall {
+    background-color: #98d;
+    background-image: url(images/wall_cyber.png);
+}
+
+.floor_biosupport > .wall {
+    background-color: #797;
+    background-image: url(images/wall_bio.png);
+}
+
+.floor_forcefield.active > .wall {
+    background-color: #fa0;
+            background-image: -webkit-gradient(linear, 0 100%, 100% 0,
+                                    color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent),
+                                    color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)),
+                                    color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent),
+                                    to(transparent));
+    -webkit-background-size: 50%;
+
+}
+
+.wall.right {
+    -webkit-transform: translate3d(64px, 0, 0) rotate3d(0, -1, 0, 90deg);
+}
+
+.wall.left {
+    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, -1, 0, 90deg);
+}
+
+.wall.top {
+    -webkit-transform: translate3d(0, 0, 0) rotate3d(1, 0, 0, 90deg);
+}
+
+.wall.bottom {
+    -webkit-transform: translate3d(0, 64px, 0) rotate3d(1, 0, 0, 90deg);
+}
+
+.wall.bottomleft_to_topright {
+    -webkit-transform: translate3d(64px, 0, 0) rotateX(90deg) rotateY(135deg);
+    width: 90.5096px;
+}
+
+.wall.bottomright_to_topleft {
+    -webkit-transform: translate3d(0, 0, 0) rotateX(90deg) rotateY(45deg);
+    width: 90.5096px;
+}
+
+.block, .wall {
+    -webkit-transition: background 0.2s ease-in-out;
+}
+
+#ui {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 0;
+            
+    z-index: 10;
+}
+
+#ui_view {
+    font-size: 18px;
+    padding: 8px 24px;
+
+    -webkit-border-radius: 12px;
+    background-color: #CCD;
+    border: 2px solid black;
+}
