@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=1;">
+        <title>Spinner</title>
+        <style type="text/css">
+
+        body {
+            background: white;
+        }
+        a {
+            color: blue;
+        }
+            a:hover {
+                text-decoration: underline;
+            }
+
+        #spinner-container {
+            background: rgba(0,0,0,0.75);
+            border-radius: 10px;
+            display: inline-block;
+            margin: 20px;
+            visibility: hidden;
+        }
+        #spinner-spinner {
+            height: 36px;
+            list-style: none;
+            margin: 10px;
+            padding: 0;
+            position: relative;
+            width: 37px;
+            -webkit-transform: rotate(0deg);
+        }
+            #spinner-spinner.pos-0  { -webkit-transform: rotate(0deg)   }
+            #spinner-spinner.pos-1  { -webkit-transform: rotate(30deg)  }
+            #spinner-spinner.pos-2  { -webkit-transform: rotate(60deg)  }
+            #spinner-spinner.pos-3  { -webkit-transform: rotate(90deg)  }
+            #spinner-spinner.pos-4  { -webkit-transform: rotate(120deg) }
+            #spinner-spinner.pos-5  { -webkit-transform: rotate(150deg) }
+            #spinner-spinner.pos-6  { -webkit-transform: rotate(180deg) }
+            #spinner-spinner.pos-7  { -webkit-transform: rotate(210deg) }
+            #spinner-spinner.pos-8  { -webkit-transform: rotate(240deg) }
+            #spinner-spinner.pos-9  { -webkit-transform: rotate(270deg) }
+            #spinner-spinner.pos-10 { -webkit-transform: rotate(300deg) }
+            #spinner-spinner.pos-11 { -webkit-transform: rotate(330deg) }
+            #spinner-spinner li {
+                border-radius: 2px;
+                display: block;
+                height: 9px;
+                left: 17px;
+                position: absolute;
+                width: 3px;
+                -webkit-border-radius: 2px;
+                -webkit-transform-origin-y: 18px;
+            }
+                #spinner-spinner :nth-child(1) {
+                    background: rgba(255,255,255,0.077);
+                    -webkit-transform: rotate(30deg);
+                }
+                #spinner-spinner :nth-child(2) {
+                    background: rgba(255,255,255,0.154);
+                    -webkit-transform: rotate(60deg);
+                }
+                #spinner-spinner :nth-child(3) {
+                    background: rgba(255,255,255,0.231);
+                    -webkit-transform: rotate(90deg);
+                }
+                #spinner-spinner :nth-child(4) {
+                    background: rgba(255,255,255,0.308);
+                    -webkit-transform: rotate(120deg);
+                }
+                #spinner-spinner :nth-child(5) {
+                    background: rgba(255,255,255,0.385);
+                    -webkit-transform: rotate(150deg);
+                }
+                #spinner-spinner :nth-child(6) {
+                    background: rgba(255,255,255,0.461);
+                    -webkit-transform: rotate(180deg);
+                }
+                #spinner-spinner :nth-child(7) {
+                    background: rgba(255,255,255,0.538);
+                    -webkit-transform: rotate(210deg);
+                }
+                #spinner-spinner :nth-child(8) {
+                    background: rgba(255,255,255,0.615);
+                    -webkit-transform: rotate(240deg);
+                }
+                #spinner-spinner :nth-child(9) {
+                    background: rgba(255,255,255,0.692);
+                    -webkit-transform: rotate(270deg);
+                }
+                #spinner-spinner :nth-child(10) {
+                    background: rgba(255,255,255,0.769);
+                    -webkit-transform: rotate(300deg);
+                }
+                #spinner-spinner :nth-child(11) {
+                    background: rgba(255,255,255,0.846);
+                    -webkit-transform: rotate(330deg);
+                }
+                #spinner-spinner :nth-child(12) {
+                    background: rgba(255,255,255,1.0);
+                    -webkit-transform: rotate(360deg);
+                }
+        </style>
+    </head>
+    <body>
+        <div id="spinner-container">
+            <ul id="spinner-spinner">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <p>
+            <a onclick="spinner.show();return false;">show</a> | <a onclick="spinner.hide();return false;">hide</a>
+        </p>
+        <script type="text/javascript">
+
+        /**
+         * Loading spinner
+         * @param object selectors Associative array of CSS selectors for the spinner element & its container (e.g., {container:'#spinner-spinner-container',spinner:'#spinner-spinner-spinner'})
+         * @param int    duration  Number of milliseconds for the spinner to complete 1 rotation
+         * @return Spinner
+         */
+        function Spinner(selectors, duration) {
+            this.container = document.querySelector(selectors.container)
+            this.spinner   = document.querySelector(selectors.spinner)
+            this.frames    = 12 // equal to the number of bars on the spinner
+            this.delay     = (duration || 1200) / this.frames // ms
+        }
+        Spinner.prototype = {
+            show : function () {
+                var that, position
+                that     = this
+                position = 0
+                this.timer = setInterval(function () {
+                    that.spinner.className = 'pos-' + position
+                    ++position
+                    if (position > that.frames - 1)
+                        position = 0
+                }, this.delay)
+                this.container.style.visibility = 'visible';
+            },
+            hide : function () {
+                this.container.style.visibility = 'hidden';
+                clearInterval(this.timer)
+            }
+        }
+        var spinner = new Spinner({
+            container : '#spinner-container',
+            spinner   : '#spinner-spinner'
+        })
+
+        </script>
+    </body>
+</html>

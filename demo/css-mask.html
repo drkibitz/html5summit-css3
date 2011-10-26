@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Mask Demo</title>
+    
+    <style>
+        * {
+            font-family: Helvetica, San-serif;
+        }
+        
+        p {
+            margin: 5px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 4px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+            padding: 5px 10px;
+            font-weight: bold;
+            -webkit-text-stroke: 1px #333;
+            color: #FFF;
+            font-size: 22px;
+        }
+        
+        .block1 {
+            float: left;
+            padding: 10px 30px;
+        }
+        
+        .block2 {
+            float: left;
+            -webkit-transform: translate3d(2000px,0,0);
+            -webkit-transition: -webkit-transform 0.5s ease-out;
+            padding: 10px 50px;
+        }
+        
+        .block3 {
+            float: left;
+            -webkit-transform: translate3d(2000px,0,0);
+            -webkit-transition: -webkit-transform 0.5s ease-out;
+            padding: 10px 50px;
+        }
+        
+        .block3 img {
+            -webkit-mask-image: url(mrclubworld_mask@2x.png);
+        }
+        
+        
+        .frame1 .block1 {
+            background: green;
+        }
+        
+        .frame2 .block1 {
+            background: blue;
+        }
+        
+        .frame3 .block1
+        {
+            background: url(Buddy.jpg);
+            background-size: 100%;
+        }
+        
+        .frame4 .block1 {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0,rgba(255,222,250,1)), color-stop(0.5,rgba(150,100,200,1)),color-stop(0.5,rgba(0,90,0,1)), color-stop(1,rgba(0,40,0,1)));
+        }      
+
+        .frame5 .block2
+        {
+             -webkit-transform: translate3d(0,0,0);  
+        }
+        
+        .frame6 .block3 {
+             -webkit-transform: translate3d(0,0,0);  
+        }
+        
+        .frame7 .block3 {
+             background: green;
+        }
+        
+        .frame8 .block3 {
+            background: url(Buddy.jpg);
+            background-size: 100%;
+        }
+        
+        .frame9 .block3 {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0,rgba(200,200,200,1)), color-stop(1,rgba(0,0,0,1)));
+            background-size: 100%;
+        }
+        
+        .frame10 .block3 {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0,rgba(255,222,250,1)), color-stop(0.5,rgba(150,100,200,1)),color-stop(0.5,rgba(0,90,0,1)), color-stop(1,rgba(0,40,0,1)));
+        } 
+        
+        .frame11 .block1 {
+            -webkit-transform: translate3d(-2000px,0,0);
+        }
+        .frame11 .block2 {
+            -webkit-transform: translate3d(-2000px,0,0);
+        }
+        .frame11 .block3 {
+            -webkit-transform: translate3d(-500px,0,0);
+        }
+        
+        .frame11 .block3 {
+            -webkit-mask: -webkit-gradient(radial, 40% 25%, 150, 40% 25%, 160, color-stop(0,rgba(0,0,0,1)), color-stop(1,rgba(0,0,0,0)));
+           /* -webkit-mask-origin: 0,0;
+            -webkit-transition: -webkit-mask-origin 0.5s ease-out;*/
+        } 
+        
+        /*
+        .frame12 .block3 {
+            -webkit-mask: -webkit-gradient(radial, 40% 25%, 100, 40% 25%, 120, color-stop(0,rgba(0,0,0,1)), color-stop(1,rgba(0,0,0,0.0)));
+            -webkit-mask-origin: 50%,50%;
+        } */
+        
+
+    
+    </style>
+    
+    <script>
+        var frame = 0;
+    </script>
+    
+</head>
+
+<body onclick="body.className = body.className + ' frame'+(frame++);">
+    <div style="overflow:hidden;">
+        <div class="block1">
+            <img src="mrclubworld@2x.png" style="height:604px;"/>
+            <p>PNG24 115KB</p>
+        </div>
+        <div class="block2" style="border-left: 1px solid gray;">
+            <img src="mrclubworld@2x.jpg"/>
+            <p>JPEG 20KB</p>
+        </div>
+        <div class="block2">   
+            <img src="mrclubworld_mask@2x.png"/>
+            <p>PNG24 16KB</p>
+        </div>
+        <div class="block3" style="border-left: 1px solid gray;">   
+            <img src="mrclubworld@2x.jpg"/>
+            <p>JPEG 20KB + PNG24 16Kb = 36KB</p>
+        </div>
+    </div>
+
+</body>
+
+
+</html>
