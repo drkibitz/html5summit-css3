@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fill Text - CSS3 Trick and Treat</title>
+<meta charset="UTF-8">
+<link href="../main.css" rel="stylesheet" />
+<style type="text/css">
+
+section.content {
+    position: relative;
+    padding: 80px 0;
+}
+
+#preloader .composite { 
+   position: relative;
+   height: 120px;
+   width: 580px;
+   margin: auto;
+   -webkit-transition: -webkit-transform .5s;
+}
+#preloader .composite div {
+    position: absolute;
+}
+
+#preloader .composite div.text1 { left: 0; }
+#preloader .composite div.and { left: 260px; top: 20px; }
+#preloader .composite div.text2 { left: 320px; }
+
+#preloader .composite div.text1,
+#preloader .composite div.text2 { 
+  font-size: 90px;
+}
+#preloader .composite div.and {  font-size: 70px; opacity: 1.0; color: #666; }
+
+/* layer specific */
+
+#preloader .composite .filler {
+   color: transparent;
+   text-shadow:  0 -1px 2px rgba(255,255,255, .5), 0 0 0 rgba(50, 50, 50, .2), 0 2px 2px rgba(0,0,0, .25);
+}
+
+#preloader .composite .filler {
+  -webkit-transition: background-position .5s;
+  background-size: 100% 100%;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 100% 0%,
+    from(red),
+    to(blue)
+);
+  background-repeat: no-repeat;
+  background-position: 0px 88px;
+  -webkit-transform: translate3d(0,0,0);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+#preloader .composite.fill {
+    -webkit-transition-duration: 2s;
+    -webkit-transform: scale3d(1.4,1.4,1.4) translate3d(0,10px,0);
+}
+#preloader .composite.fill .filler {
+    -webkit-transition-duration: 4s;
+    background-position: 0 12px;
+}
+</style>
+</head>
+<body id="preloader">
+
+<h1>Text Fill</h1>
+<h2><a href="../index.html">CSS3 Trick and Treat</a></h2>
+
+<section class="content" onclick="return document.querySelector('.composite').classList.toggle('fill');">
+    <div class="composite">
+      
+      <div class="filler_off" >
+        <div class="text1 filler">Tricks</div>
+        <div class="and">&amp;</div>
+        <div class="text2 filler">Treats&nbsp;</div>
+      </div>
+      
+    </div>
+</section>
+
+</body>
+</html>
