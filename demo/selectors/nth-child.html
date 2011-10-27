@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>nth-child - Selectors - CSS3 Trick and Treat</title>
+<link href="../../main.css" rel="stylesheet" />
+<link href="style.css" rel="stylesheet" />
+</head>
+<body class="">
+
+<h1>Selectors</h1>
+<h2><a href="../../index.html">CSS3 Trick and Treat</a></h2>
+
+<header>
+    nth-child | <a href="attribute-matching.html">attribute matching</a> | <a onclick="document.body.classList.toggle('styles'); return false;" href="">toggle styles</a>
+</header>
+
+<div id="nth-child">
+    <section>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>11</li>
+            <li>12</li>
+            <li>13</li>
+            <li>14</li>
+            <li>15</li>
+        </ul>
+    </section>
+    <section>
+<pre>
+ul :nth-child(odd)::after {
+    color: blue;
+    content: "odd";
+}
+
+ul :first-child::after {
+    color: green;
+    content: "first";
+}
+
+ul :last-child::after {
+    color: red;
+    content: "last";
+}
+
+ul :not(:first-child):not(:last-child):nth-child(even)::after {
+    content: "even, not first, not last" !important;
+}
+</pre>
+    </section>
+</div>
+
+</body>
+</html>

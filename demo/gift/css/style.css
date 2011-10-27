@@ -70,7 +70,12 @@ body {
 /**
  * GIFT
  */
- 
+
+#the-gift {
+	position: relative;
+	margin: auto;
+}
+
 #the-gift .view-container {
 	overflow: hidden;
 }
@@ -347,33 +352,20 @@ body {
 
 #the-gift .info {
 	text-align: center;
-	padding-top: 350px;
+	padding-top: 240px;
     background: url("../images/bg-revealed.jpg") no-repeat 0 0;
 }
 
 #the-gift .info h2 {
 	font-family: 'HelveticaNeueLTStd77BoldConde';
-	color: #a40f1d;
-	font-size: 168px;
-	margin-bottom: 40px;
+	color: #fff;
+	font-size: 40px;
+	margin-bottom: 20px;
+	line-height: normal;
 }
 
-#the-gift .info h2 sup {
-	font-size: 84px;
-	vertical-align: super;
-}
-
-#the-gift .info h2 span {
-	margin: 0 -8px;
-}
-
-#the-gift .info h3,
 #the-gift .info p {
 	font-family: 'HelveticaNeueLTStd77BoldConde';
-	color: #333;
-	font-size: 40px;
-}
-
-#the-gift .info p {
-	font-size: 18px;
+	color: #fff;
+	font-size: 30px;
 }

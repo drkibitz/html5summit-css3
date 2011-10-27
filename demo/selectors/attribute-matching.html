@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>attribute matching - Selectors - CSS3 Trick and Treat</title>
+<link href="../../main.css" rel="stylesheet" />
+<link href="style.css" rel="stylesheet" />
+</head>
+<body class="">
+
+<h1>Selectors</h1>
+<h2><a href="../../index.html">CSS3 Trick and Treat</a></h2>
+
+<header>
+    <a href="nth-child.html">nth-child</a> | attribute matching | <a onclick="document.body.classList.toggle('styles'); return false;" href="">toggle styles</a>
+</header>
+
+<div id="attribute-matching">
+    <section>
+        <ul>
+            <li><a>no href</a></li>
+            <li><a href="#hash1">hash link 1</a></li>
+            <li><a href="attribute-matching.html#hash2">hash link 2</a></li>
+            <li><a href="http://www.example.com/">http link</a></li>
+            <li><a href="https://www.example.com/">https link</a></li>
+            <li><a href="http://html5.tapulous.com/">summit</a></li>
+            <li><a href="https://html5.tapulous.com/">summit https</a></li>
+            <li><a href="sftp://html5.tapulous.com/">summit sftp</a></li>
+            <li><a onclick="document.body.classList.toggle('styles'); return false;">onclick only</a></li>
+            <li><a onclick="document.body.classList.toggle('styles'); return false;" href="#">onclick hash href</a></li>
+        </ul>
+    </section>
+    <section>
+<pre>
+a[href]::after {
+    content: 'href ="' attr(href) '"';
+}
+
+a[onclick]::after {
+    content: 'onclick="' attr(onclick) '"';
+}
+
+a:not([href]) {
+    color: red;
+}
+
+a[href^="#"] {
+    color: green;
+}
+
+a[href*="#"]::before {
+    content: "Has hash";
+}
+
+a[href^="#"]::before {
+    content: "Hash only";
+}
+
+a[href*="://"] {
+    text-decoration: line-through;
+    pointer-events: none;
+}
+
+a[href*="//html5."] {
+    color: blue;
+}
+
+a[onclick][href]:after {
+    content: "Has both onclick and href";
+}
+</pre>
+    </section>
+</div>
+
+</body>
+</html>

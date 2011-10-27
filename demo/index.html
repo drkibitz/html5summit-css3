@@ -1,360 +1,109 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <meta name="apple-mobile-web-app-capable" content="yes" />  
-        <meta name="viewport" content = "width = device-width, initial-scale = 1, user-scalable = no" /> 
-        <style type="text/css">
-            html, body  {
-                padding: 0;
-                margin: 0;
-            }
-            
-            @media (min-device-width: 480px)
-            {
-                html, body  {
-                    padding: 60px 200px;
-                    margin: 0;
-                }
-            }
-            
-            .book {
-                width: 320px;
-                height: 480px;
-                padding: 0;
-                border-right: 3px double #DDD;
-                border-bottom:3px double #DDD;
-                -webkit-perspective: 2400px;
-                /*overflow: hidden;*/
-            }
-            .page {
-                width: 320px;
-                height: 480px;
-                position: absolute;
-            }
-            
-            @-webkit-keyframes open {
-                0% {
-                    -webkit-transform: translateX(40px) rotateY(0deg);
-                } 
-                20% {
-                    -webkit-transform: translateX(40px) rotateY(-15deg);
-                }
-                100% {
-                    -webkit-transform: translateX(40px) rotateY(0deg);
-                }
-            }
-            
-            
-            @-webkit-keyframes open2 {
-                0% {
-                    -webkit-transform: translateX(0px) rotateY(0deg);
-                } 
-                100% {
-                    -webkit-transform: translateX(0px) rotateY(-180deg);
-                }
-            }
-            
-            
-            @-webkit-keyframes close {
-                100% {
-                    -webkit-transform: translateX(40px) rotateY(0deg);
-                }
-                20% {
-                    -webkit-transform: translateX(40px) rotateY(15deg);
-                } 
-                0% {
-                    -webkit-transform: translateX(40px) rotateY(0deg);
-                }
-            }
-            
-            
-            @-webkit-keyframes close2 {
-                100% {
-                    -webkit-transform: translateX(0px) rotateY(0deg);
-                } 
-                0% {
-                    -webkit-transform: translateX(0px) rotateY(-180deg);
-                }
-            }
-            
-            /*.page.in {
-                 -webkit-animation-name: foldin;
-                 -webkit-animation-duration: 1s;
-            }
-            
-            .page.out {
-                -webkit-animation-name: foldout;
-                -webkit-animation-duration: 1s;
-            }
-            
-            @-webkit-keyframes foldin {
-                0% {
-                    -webkit-transform: translateX(-100%);
-                } 
-                100% {
-                    -webkit-transform: translateX(0);
-                }
-            }
-            
-            @-webkit-keyframes foldout {
-                0% {
-                    -webkit-transform: translateX(0);
-                } 
-                100% {
-                    -webkit-transform: translateX(-100%);
-                }
-            }*/
-            
-            /*.page.fold {
-                -webkit-transform: translateZ(100px) rotateX(-30deg) rotateY(70deg);
-            }*/
-            
-            #page1 {
-            	background: green;
-            }
-            
-            #page2 {
-                background: #EEE;
-               /* background: -webkit-gradient(linear, 100% 0, 0 0, color-stop(0, rgba(0,0,0,0)),  color-stop(1, rgba(0,0,0,0.1)));*/
-            }
-            
-            /*.page.active {
-                background: transparent !important;
-            }*/
-            
-            .page .panel>.content {
-                width:320px;
-                height:480px;
-                background-color: #EEE;
-            }
-            
-            .page .panel {
-                overflow: hidden;
-                position: absolute;
-                width: 42px;
-            }
-            
-            .page .backface {
-                width: 41px;
-                height: 480px;
-                display: block;
-                background: rgba(240,240,240,0.98);
-                position: absolute;
-                -webkit-transform: translateZ(-1px);
-            }
-            
-            .page .nextSlice,
-            .page.closed .nextSlice,
-            .page .spine,
-            .page.closed .spine {
-                -webkit-transform-origin: 0% 50%;
-                position: relative;
-                -webkit-transform-style: preserve-3d;
-                -webkit-transform: translateX(40px) rotateY(0deg);
-                /*-webkit-transition: linear -webkit-transform 1s;*/
-                height:480px;
-                width:320px;
-                /*background: rgba(0,0,0,0.1);*/
-            }
-            
-            .page .spine,
-            .page.closed .spine {
-                -webkit-transform: translateZ(1px) translateX(0) rotateY(0);
-            }
-            
-            .page.closed .nextSlice {
-                -webkit-animation-name: close;
-                -webkit-animation-duration: 4s;
-            }
-            
-            .page.closed .spine {
-                -webkit-animation-name: close2;
-                -webkit-animation-duration: 4s;
-            }
-            
-            /*.shadowFront {
-                position: absolute;
-                background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0, rgba(0,0,0,0)),  color-stop(1, rgba(0,0,0,0.1)));
-                width: 42px;
-                height: 480px;
-                -webkit-transform: translateZ(2px);
-            }*/
-            
-            .backface .shadow {
-                position: absolute;
-                background: -webkit-gradient(linear, 0 0, 50% 0, color-stop(0, rgba(0,0,0,0.3)), color-stop(0.8, rgba(0,0,0,0)));
-                width: 42px;
-                height: 480px;
-                -webkit-transform: translateZ(-2px);
-            }
-            
-            /*.shadow {
-                position: absolute;
-                width:320px;
-                height:480px;
-                background: -webkit-gradient(linear, 50% 0, 100% 0, color-stop(0, rgba(0,0,0,0)), color-stop(0.5,rgba(0,0,0,0.3)), color-stop(1, rgba(0,0,0,0.4)));
-                -webkit-transform-origin: 50% 50%;
-                -webkit-transform: translateZ(200px) rotateY(0deg);
-                -webkit-transition: all linear 2s;
-            }*/
-            
-            /*.page.active .shadow {
-                -webkit-transform: translateX(-160px) translateZ(200px) rotateY(-180deg);
-            }*/
-            
-            /*.shadow2 {
-                position: absolute;
-                width:320px;
-                height:480px;
-                background: -webkit-gradient(linear, 100% 0, 60% 0, color-stop(0, rgba(0,0,0,0)), color-stop(0.5,rgba(0,0,0,0.3)), color-stop(1, rgba(0,0,0,0.4)));
-            }*/
-            
-            .page.active .nextSlice {
-                -webkit-transform: translateX(40px) rotateY(0);
-                -webkit-animation-name: open;
-                -webkit-animation-duration: 4s;
-            }
-            
-            .page.active .spine {
-                -webkit-transform: translateX(0px) rotateY(-180deg);
-                -webkit-animation-name: open2;
-                -webkit-animation-duration: 4s;
-                /*-webkit-animation-timing-function: ease-in;*/
-                
-            }
-            
-            /*.page.open .nextSlice {
-                -webkit-transform: translateX(40px) rotateY(0deg);
-            }*/
-            
-            /*.page.open>.nextSlice {
-                -webkit-transform: translateX(0px) rotateY(-180deg);
-            }*/
-            
-            .pageFooter {
-                position: absolute;
-                bottom: 20px;
-                text-align: center;
-                font-size: 12px;
-                color: #999;
-                width: 320px;
-            }
-            
-            #page2shadow {
-                background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0, rgba(0,0,0,0.3)), color-stop(1, rgba(0,0,0,0)));
-                width: 320px;
-                height: 480px;
-                position: absolute;
-                -webkit-transform-origin-x: 0;
-            }
-            
-            #page2shadow.closed {
-                -webkit-transform: scale(1,1);
-                -webkit-transition: ease-in all 2s 0.5s;
-                width: 320px;
-                height: 480px;
-            }
-            
-            #page2shadow.open {
-                /*width: 15px;*/
-                -webkit-transform: scale(0.05,1);
-                -webkit-transition: ease-out all 2s;
-                /*-webkit-animation-timing-function: ease-out;*/
-                
-            }
-            
-        </style>
-    </head>
-    <body>
-        <div class="book">
-            <div class="page" id="page2">
-               <div style="padding: 20px 20px 40px 20px;">
-                    <h2 style="margin: 0; border-bottom: 1px solid #ccc; padding: 0 0 10px 0;">A puppy named Buddy</h2>
-                    <p>There once was a puppy named Buddy<br/>whos eyes were bigger than his tummy</p>
-                    <p>One day he ate too much<br/>and couldn't move much</p>
-                    </p>That silly young puppy named Buddy.</p>
-                    <p style="text-align:center; margin-top: 50px;"><img src="http://graph.facebook.com/100000874815808/picture?type=large"/></p>
-                </div>
-                <div class="pageFooter">Page 2 or 2</div>
-            </div>
-            
-            <div class="closed" id="page2shadow"></div>
-            
-            
-            <div class="page" id="page1">
-                <div style="text-align:center; background: -webkit-gradient(radial, 50% 70%, 0, 50% 70%, 300, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.3))); height: 480px">
-                    <img src="http://a2.twimg.com/profile_images/688098838/AKC_S.T.A.R._Puppy_by_zahnster85.jpeg" style="margin: 40px 20px;"/>
-                    <h2 style="margin: 5px; font-family: 'Apple Chancery'; font-size: 32px;">Buddy</h2>
-                    
-                </div>
-                <div class="pageFooter">Page 1 or 2</div>
-            </div>
-            
-            <div class="page" id="folding">
-            
-            
-            </div>
-            
-            
-            
-            <!--<div class="shadow2">
-                
-            </div>-->
-        </div>
-        
-        
-		<script>
-            /*function fold(page) {
-                page2 = page.cloneNode(true);
-                page2.className = 'page fold';
-                page.parentNode.appendChild(page2);
-                page.className = 'page out';
-            }*/
-            
-            p1 = document.getElementById('page1');
-            folding = document.getElementById('folding');
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS3 Trick and Treat</title>
+    <meta name="description" content="html5, summit, disney, mobile, css, css3">
+    <meta name="author" content="Dinsey Mobile">
 
-            //function insertPanel(ele) {
-            //    ele
-            //}
-             
-            
-            document.addEventListener('click', function(e) {
-                
-                if (folding.className != 'page active') {
-                    folding.className = 'page active';
-                    document.getElementById('page2shadow').className = 'open';
-                } else {
-                    folding.className = 'page closed';
-                    document.getElementById('page2shadow').className = 'closed';
-                }
-            });
-            
-            /*document.addEventListener('touchstart', function(e) {
-                
-                if (folding.className != 'page active')
-                    folding.className = 'page active';
-                else
-                    folding.className = 'page';
-            });*/
-            
-            var pageHTML = p1.innerHTML;
-            p1.parentNode.removeChild(p1);
-            
-            var ele = folding;
-            for(var i=0; i<8; i++)
-            {
-                p = document.createElement('div');
-                p.className = (i==0) ? 'spine' : 'nextSlice';
-                p.innerHTML = '<div class="panel"><div class="content" style="margin-left:-'+(i*40)+'px">'+pageHTML+'</div></div><div class="backface">'+((i==0) ? '<div class="shadow"></div>' : '')+'</div>';
-                ele.appendChild(p);
-                ele = p;
-            }
-            shadowFront = document.createElement('div');
-            shadowFront.className = 'shadowFront';
-            ele.appendChild(shadowFront);
-            
-        </script>
-        
-    </body>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      /* Override some defaults */
+      html, body {
+        background-color: #eee;
+      }
+      body {
+        padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+      }
+      .container > footer p {
+        text-align: center; /* center align it with the container */
+      }
+      .container {
+        width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+      }
+
+      /* The white background content wrapper */
+      .content {
+        background-color: #fff;
+        padding: 20px;
+        margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+        -webkit-border-radius: 0 0 6px 6px;
+           -moz-border-radius: 0 0 6px 6px;
+                border-radius: 0 0 6px 6px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+      }
+
+      /* Page header tweaks */
+      .page-header {
+        background-color: #f5f5f5;
+        padding: 20px 20px 10px;
+        margin: -20px -20px 20px;
+      }
+
+      /* Styles you shouldn't keep as they are for displaying this base example only */
+      .content .span10,
+      .content .span4 {
+        min-height: 500px;
+      }
+      /* Give a quick and non-cross-browser friendly divider */
+      .content .span4 {
+        margin-left: 0;
+        padding-left: 19px;
+        border-left: 1px solid #eee;
+      }
+
+      .topbar .btn {
+        border: 0;
+      }
+
+    </style>
+
+    <!-- Le fav and touch icons -->
+<!--     <link rel="shortcut icon" href="images/favicon.ico"> -->
+<!--     <link rel="apple-touch-icon" href="images/apple-touch-icon.png"> -->
+<!--     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png"> -->
+<!--     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png"> -->
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">Disney HTML5 Summit</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        <div class="page-header">
+          <h1>CSS3 Trick and Treat <small>Demos and Examples</small></h1>
+        </div>
+        <div class="row">
+          <div class="span10">
+            <h2>Main content</h2>
+          </div>
+          <div class="span4">
+            <h3>Secondary content</h3>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; Disney Mobile 2011</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
 </html>
