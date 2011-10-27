@@ -1,132 +1,220 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Borders &amp; Gradients</title>
-        <style type="text/css">
+<head>
+<title>Borders &amp; Gradients - CSS3 Trick and Treat</title>
+<meta charset="UTF-8">
+<link href="../main.css" rel="stylesheet" />
+<style type="text/css">
 
-        body {
-            font: 18px/1.5 Helvetica;
-            padding: 0 1em;
-        }
+.content {
+    height: 400px;
+    padding: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-flex: 1;
+}
+.content.main {
+    width: 400px;
+}
+.content.nav {
+    width: 100px;
+}
 
-        nav {
-            min-width: 200px;
-            position: absolute;
-            right: 18px;
-            top: 18px;
-        }
+input[type=range] {
+    width: 150px;
+}
 
-        ul {
-            margin-left: 0;
-            padding-left: 0;
-        }
+pre {
+    display: none;
+}
+pre.visible {
+    display: block;
+}
 
-        a {
-            color: blue;
-        }
-            a:hover {
-                text-decoration: underline;
-            }
+#the-button {
+    width: 30px;
+    height: 30px;
+    -webkit-transform: scale3d(2,2,2);
+}
 
-        input[type=range] {
-            width: 200px;
-        }
+#the-button.border {
+    border: solid 1px rgba(0,0,0,0.2);
+}
 
-        div {
-            height: 30px;
-            left: 50%;
-            margin: -15px 0 0 -15px;
-            position: absolute;
-            top: 50%;
-            width: 30px;
-            -webkit-transform: scale(1);
-        }
+#the-button.border-radius {
+    -webkit-border-radius: 15px;
+}
 
-        div.border {
-            border: solid 1px rgba(0,0,0,0.2);
-        }
+#the-button.background {
+    background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#b8b8b8));
+}
 
-        div.border-radius {
-            -webkit-border-radius: 16px;
-        }
+#the-button.box-shadow {
+    -webkit-box-shadow: #333 0 1px 1px;
+}
 
-        div.background {
-            background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#b8b8b8));
-        }
+#the-button.before:before {
+    background: -webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#b0b0b0));
+    content: '';
+    display: block;
+    height: 14px;
+    left: 8px;
+    position: absolute;
+    top: 8px;
+    width: 14px;
+    -webkit-border-radius: 6px;
+    -webkit-box-sizing: border-box;
+}
 
-        div.box-shadow {
-            -webkit-box-shadow: #333 0 1px 1px;
-        }
+#the-button.selected:before {
+    background: #10d820 -webkit-gradient(radial, 6 6, 4, 6 6, 6, from(#10d820), to(#36b300));
+    border: 1px inset rgba(0,0,0,0.33);
+    height: 14px;
+    width: 14px;
+}
 
-        div.before:before {
-            background: -webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#b0b0b0));
-            content: '';
-            display: block;
-            height: 14px;
-            left: 8px;
-            position: absolute;
-            top: 8px;
-            width: 14px;
-            -webkit-border-radius: 6px;
-            -webkit-box-sizing: border-box;
-        }
+#the-button.after:after {
+    content: '';
+    display: block;
+    height: 14px;
+    left: 8px;
+    position: absolute;
+    top: 8px;
+    width: 14px;
+    -webkit-border-radius: 7px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.25), 0 1px 0 rgba(255,255,255,0.5);
+}
 
-        div.selected:before {
-            background: #10d820 -webkit-gradient(radial, 6 6, 4, 6 6, 6, from(#10d820), to(#36b300));
-            border: 1px inset rgba(0,0,0,0.33);
-            height: 14px;
-            width: 14px;
-        }
+#the-button.selected:after {
+    border-width: 2px;
+    height: 14px;
+    width: 14px;
+    -webkit-border-radius: 7px;
+}
 
-        div.after:after {
-            content: '';
-            display: block;
-            height: 14px;
-            left: 8px;
-            position: absolute;
-            top: 8px;
-            width: 14px;
-            -webkit-border-radius: 7px;
-            -webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.25), 0 1px 0 rgba(255,255,255,0.5);
-        }
+</style>
+</head>
+<body>
 
-        div.selected:after {
-            border-width: 2px;
-            height: 14px;
-            width: 14px;
-            -webkit-border-radius: 7px;
-        }
+<h1>Borders &amp; Gradients</h1>
+<h2><a href="../index.html">CSS3 Trick and Treat</a></h2>
 
-        </style>
-    </head>
-    <body>
-        <h1>Borders &amp; Gradients</h1>
-        <nav>
-            <h2>Toggle styles</h2>
-            <ul>
-                <li><a>border</a></li>
-                <li><a>border-radius</a></li>
-                <li><a>background</a></li>
-                <li><a>box-shadow</a></li>
-                <li><a>before</a></li>
-                <li><a>after</a></li>
-                <li><a>selected</a></li>
-            </ul>
-            <input type="range" min="1" max="10" value="1" step="1">
-        </nav>
-        <div></div>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-        <script type="text/javascript">
-        var div
-        div = $('div')
-        document.querySelector('ul').addEventListener('click', function (e) {
-            var className
-            className = e.target.innerHTML
-            div.toggleClass(className)
-        })
-        document.querySelector('input[type=range]').addEventListener('change', function (e) {
-            div.css('-webkit-transform', 'scale(' + this.value + ')')
-        })
-        </script>
-    </body>
+<div>
+<section>
+<pre class="visible">
+#the-button {
+    width: 30px;
+    height: 30px;
+}
+</pre>
+<pre id="pre-border">
+.border {
+    border: solid 1px rgba(0,0,0,0.2);
+}
+</pre>
+<pre id="pre-border-radius">
+.border-radius {
+    -webkit-border-radius: 15px;
+}
+</pre>
+<pre id="pre-background">
+.background {
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#f0f0f0), to(#b8b8b8)
+    );
+}
+</pre>
+<pre id="pre-box-shadow">
+.box-shadow {
+    -webkit-box-shadow: #333 0 1px 1px;
+}
+</pre>
+<pre id="pre-before">
+.before:before {
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#d0d0d0), to(#b0b0b0)
+    );
+    content: '';
+    display: block;
+    height: 14px;
+    left: 8px;
+    position: absolute;
+    top: 8px;
+    width: 14px;
+    -webkit-border-radius: 6px;
+    -webkit-box-sizing: border-box;
+}
+
+</pre>
+<pre id="pre-after">
+.after:after {
+    content: '';
+    display: block;
+    height: 14px;
+    left: 8px;
+    position: absolute;
+    top: 8px;
+    width: 14px;
+    -webkit-border-radius: 7px;
+    -webkit-box-shadow:
+        inset 0 1px 0 rgba(0,0,0,0.25),
+        0 1px 0 rgba(255,255,255,0.5);
+}
+</pre>
+<pre id="pre-selected">
+.selected:before {
+    background: #10d820 -webkit-gradient(
+        radial, 6 6, 4, 6 6, 6,
+        from(#10d820), to(#36b300)
+    );
+    border: 1px inset rgba(0,0,0,0.33);
+    height: 14px;
+    width: 14px;
+}
+
+.selected:after {
+    border-width: 2px;
+    height: 14px;
+    width: 14px;
+    -webkit-border-radius: 7px;
+}
+</pre>
+</section>
+<section class="content main">
+    <div id="the-button"></div>
+</section>
+<section class="content nav">
+    <nav>
+        <h3>Toggle styles</h3>
+        <ul>
+            <li><a>border</a></li>
+            <li><a>border-radius</a></li>
+            <li><a>background</a></li>
+            <li><a>box-shadow</a></li>
+            <li><a>before</a></li>
+            <li><a>after</a></li>
+            <li><a>selected</a></li>
+        </ul>
+        <input type="range" min="1" max="10" value="2" step="0.1">
+    </nav>
+</section>
+</div>
+
+<script type="text/javascript">
+var div = document.querySelector('#the-button');
+document.querySelector('ul').addEventListener('click', function (e) {
+    var className;
+    className = e.target.innerHTML;
+    div.classList.toggle(className);
+    document.querySelector('#pre-'+className).classList.toggle('visible');
+})
+document.querySelector('input[type=range]').addEventListener('change', function (e) {
+    div.style.webkitTransform = 'scale3d(' + this.value + ',' + this.value + ',' + this.value + ')';
+})
+</script>
+</body>
 </html>
