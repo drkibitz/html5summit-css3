@@ -1,29 +1,3 @@
-
-body > div {
-    display: -webkit-box;
-    -webkit-box-orient: horizontal;
-}
-
-header {
-    padding: 5px;
-    background: #fff;
-    text-align: center;
-    margin: 10px 0;
-}
-
-div > section {
-    display: -webkit-flex-box;
-    -webkit-box-flex: 1;
-    margin: 10px;
-}
-
-div > section pre {
-    font-family: Monaco;
-    font-size: 14px;
-    background: #fff;
-    padding: 20px;
-}
-
 div > section li,
 div > section a {
     font-size: 20px;

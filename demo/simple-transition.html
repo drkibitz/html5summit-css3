@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Transition - CSS3 Trick and Treat</title>
+<meta charset="UTF-8">
+<link href="../main.css" rel="stylesheet" />
+<style type="text/css">
+
+#simple-transition .content {
+    padding: 20px;
+    font-size: 36px;
+    -webkit-user-select: none;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+#simple-transition a {
+    display: inline-block;
+    -webkit-transition-duration: 1s;
+}
+
+#simple-transition .no-transform a {
+    position: relative;
+    -webkit-transition-property: left, top, font-size;
+}
+
+#simple-transition .no-transform a:active {
+    left: 150px;
+    top: 150px;
+    font-size: 200%;
+}
+
+#simple-transition .transform a {
+    -webkit-transition-property: -webkit-transform;
+}
+
+#simple-transition .transform a:active {
+    -webkit-transform: translate3d(150px, 150px, 0) scale(2);
+}
+
+</style>
+</head>
+<body class="">
+
+<h1>Simple Transition</h1>
+<h2><a href="../index.html">CSS3 Trick and Treat</a></h2>
+
+<div id="simple-transition">
+    <section class="content no-transform">
+        <a>foo</a>
+    </section>
+    <section class="content transform">
+        <a>foo</a>
+    </section>
+    <section>
+<pre>
+a {
+    display: inline-block;
+    -webkit-transition-duration: 1s;
+}
+
+.no-transform a {
+    position: relative;
+    -webkit-transition-property: left, top, font-size;
+}
+
+.no-transform a:active {
+    left: 150px;
+    top: 150px;
+    font-size: 200%;
+}
+
+.transform a {
+    -webkit-transition-property: -webkit-transform;
+}
+
+.transform a:active {
+    -webkit-transform: translate3d(150px, 150px, 0) scale(2);
+}
+</pre>
+    </section>
+</div>
+</body>
+</html>
