@@ -1,14 +1,15 @@
-* {
+body > div * {
 	margin:0;
 	padding:0;	
 }
 
-#container{
+#container {
 	overflow: hidden;
 	background: gray;
 	width: 320px;
 	height: 480px;
 	padding-top: 20px;
+	margin: auto;
 }
 
 #test{
