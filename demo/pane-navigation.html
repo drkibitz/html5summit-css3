@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pane Navigation - CSS3 Trick and Treat</title>
+<meta charset="UTF-8">
+<link href="../main.css" rel="stylesheet" />
+
+<style type="text/css">
+
+section.content {
+    position: relative;
+    padding: 20px;
+}
+
+#panes * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+#panes {
+    width: 320px;
+    height: 480px;
+    -webkit-transform: translate3d(0, 0, 0);
+    overflow: hidden;
+    background: black -webkit-gradient(linear, left top, left bottom, from(#333), to(#eee));
+    color: white;
+    font: bold 16px/1 Helvetica;
+    margin: auto;
+}
+
+#panes nav {
+    bottom: 20px;
+    left: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+#panes a {
+    background: #ccc -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+    color: black;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    -webkit-border-radius: 10px;
+    -webkit-transform: translate3d(0, 400px, 0);
+    -webkit-transition: -webkit-transform 0.5s;
+}
+
+#panes a:hover {
+    -webkit-border-radius: 10px;
+}
+
+#panes .horiz a {
+    -webkit-transform: translate3d(0, 220px, 0);
+}
+
+#panes a:active {
+    background: #ccc -webkit-gradient(linear, left top, left bottom, from(#999), to(#ccc));
+}
+
+#panes a[data-section-id="pane1"] {
+    left: 10px;
+    top: 0;
+}
+
+#panes a[data-section-id="pane2"] {
+    right: 10px;
+    top: 0;
+}
+
+#panes a.current {
+    background: rgba(80, 80, 80, 0.5);
+    color: white;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+#panes section {
+    border: 2px solid rgba(255,255,255,.25);
+    bottom: 40px;
+    left: 20px;
+    opacity: 0;
+    position: absolute;
+    right: 20px;
+    top: 40px;
+    -webkit-border-radius: 10px;
+    -webkit-transition: opacity .75s .1s, -webkit-transform .75s .1s;
+}
+
+#panes section.current {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+#panes section[section-id="pane1"] {
+    background: rgba(0, 0, 255, 0.5);
+    -webkit-transform: translate3d(0, 50%, 0) scale(1.5);
+}
+
+#panes section[section-id="pane2"] {
+    background: rgba(255, 0, 0, 0.5);
+    -webkit-transform: translate3d(0, 50%, 0) scale(0.5);
+}
+
+#panes section h1 {
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 60px;
+    font-size: 28px;
+}
+</style>
+</head>
+<body>
+
+<h1>Pane Navigation</h1>
+<h2><a href="../index.html">CSS3 Trick and Treat</a></h2>
+
+<section class="content">
+    <div id="panes">
+        <section section-id="pane1" class="current">
+            <h1>Title 1</h1>
+        </section>
+        <section section-id="pane2">
+            <h1>Title 2</h1>
+        </section>
+        <nav>
+            <a data-section-id="pane1" class="current">Pane 1</a>
+            <a data-section-id="pane2">Pane 2</a>
+        </nav>
+    </div>
+</section>
+
+<script type="text/javascript">
+var event = 'ontouchend' in document ? 'touchend' : 'mouseup'
+document.querySelector('nav').addEventListener(event, function (e) {
+    var element, currents, i, len
+    element = e.target
+    while (1 !== element.nodeType) {
+        element = e.target.parentNode
+    }
+    if ('A' !== element.tagName) {
+        return
+    }
+    currents = document.querySelectorAll('.current')
+    for (i = 0, len = currents.length; i < len; ++i) {
+        currents[i].className = ''
+    }
+    document.querySelector('#panes section[section-id="'+element.getAttribute('data-section-id')+'"]').className = element.className = 'current'
+})
+document.ontouchmove = function(e) {
+    e.preventDefault()
+}
+window.onorientationchange = function (e) {
+    document.body.className = 90 === window.orientation || -90 === window.orientation ? 'horiz' : ''
+}
+</script>
+</body>
+</html>
