@@ -6,6 +6,13 @@
 <link href="../main.css" rel="stylesheet" />
 <style type="text/css">
 
+@font-face {
+	font-family: 'HelveticaNeueLTStd77BoldConde';
+	src: local('☺'), url('fonts/helveticaneueltstd_bdcn-webfont.svg#webfontky6S3NHP') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
 section.content {
     position: relative;
     padding: 80px 0;
@@ -13,17 +20,18 @@ section.content {
 
 #preloader .composite { 
    position: relative;
-   height: 120px;
-   width: 580px;
+   height: 80px;
+   width: 540px;
    margin: auto;
    -webkit-transition: -webkit-transform .5s;
 }
 #preloader .composite div {
     position: absolute;
+    font-family: "HelveticaNeueLTStd77BoldConde";
 }
 
 #preloader .composite div.text1 { left: 0; }
-#preloader .composite div.and { left: 260px; top: 20px; }
+#preloader .composite div.and { left: 252px; top: 15px; }
 #preloader .composite div.text2 { left: 320px; }
 
 #preloader .composite div.text1,
@@ -48,7 +56,7 @@ section.content {
     to(blue)
 );
   background-repeat: no-repeat;
-  background-position: 0px 88px;
+  background-position: 0px 70px;
   -webkit-transform: translate3d(0,0,0);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -59,8 +67,9 @@ section.content {
     -webkit-transform: scale3d(1.4,1.4,1.4) translate3d(0,10px,0);
 }
 #preloader .composite.fill .filler {
-    -webkit-transition-duration: 4s;
-    background-position: 0 12px;
+    -webkit-transition-duration: 2.5s;
+    -webkit-transition-timing-function: ease-out;
+    background-position: 0 0;
 }
 </style>
 </head>

@@ -330,7 +330,7 @@ body {
 }
 
 #the-gift:not(.paused) .info .text {
-    -webkit-animation: fade-in 2s 3.5s backwards;
+    -webkit-animation: fade-in 5s 3s backwards;
 }
 
 #the-gift .info h2 {
